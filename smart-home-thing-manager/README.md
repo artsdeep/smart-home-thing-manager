@@ -35,7 +35,7 @@
 1.
 
 ``` shell
-docker run --name postgres-db -e POSTGRES_DB=smart_home -e POSTGRES_USER=your_username -e POSTGRES_PASSWORD=your_password -p 5432:5432 -d postgres:13-alpine
+docker run --name postgres-db --network my_network -e POSTGRES_DB=smart_home -e POSTGRES_USER=your_username -e POSTGRES_PASSWORD=your_password -p 5732:5432 -d postgres:13-alpine
 ```
 
 2.

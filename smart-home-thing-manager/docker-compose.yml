@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  postgres-db:
+    image: postgres:13-alpine
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: smart_home
+      POSTGRES_USER: your_username
+      POSTGRES_PASSWORD: your_password
+    ports:
+      - "5732:5432"
+    networks:
+      - my_network
+  java_app:
+    image: ghcr.io/artsdeep/smart-home-thing-mnager-app-app:latest
+    container_name: java-app
+    ports:
+      - "8080:8080"
+    networks:
+      - my_network
+    depends_on:
+      - postgres-db
+
+networks:
+  my_network:
+    driver: bridge
