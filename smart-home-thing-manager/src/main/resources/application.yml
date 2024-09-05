@@ -18,6 +18,15 @@ spring:
     init:
       mode: always
       schema-locations: classpath:init.sql
+  kafka:
+    bootstrap-servers: kafka:29092,kafka2:29093 # Адрес вашего Kafka брокера
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: smart-home
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
 server:
-  port: 8080
+  port: 8083
