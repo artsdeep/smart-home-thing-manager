@@ -29,12 +29,12 @@ public class DeviceController {
     private static final Logger logger = LoggerFactory.getLogger(DeviceController.class);
     @GetMapping("/test")
     public String getHeatingSystem() {
-        return "ddd";
+        return "test";
     }
     @PostMapping("/registerDevice")
     public ResponseEntity<Device> registerDevice(@RequestBody Device device) {
         Device savedDevice = deviceService.registerDevice(device);
-        kafkaService.sendMessage("register-device", savedDevice.getDeviceName());
+        kafkaService.sendMessage("register-device", String.valueOf(savedDevice.getId()));
         return ResponseEntity.status(201).body(savedDevice);
     }
 

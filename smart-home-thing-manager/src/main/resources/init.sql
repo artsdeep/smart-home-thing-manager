@@ -1,11 +1,11 @@
-CREATE TABLE DeviceType (
+CREATE TABLE IF NOT EXISTS DeviceType (
                             device_type_id SERIAL PRIMARY KEY,
                             type_name VARCHAR(255) NOT NULL,
                             description VARCHAR(255)
 );
 
 -- Создание таблицы Device
-CREATE TABLE Device (
+CREATE TABLE IF NOT EXISTS Device (
                         id SERIAL PRIMARY KEY,
                         device_name VARCHAR(255) NOT NULL,
                         status VARCHAR(50),
@@ -15,7 +15,7 @@ CREATE TABLE Device (
 );
 
 -- Создание таблицы DeviceConfig
-CREATE TABLE DeviceConfig (
+CREATE TABLE IF NOT EXISTS DeviceConfig (
                               id SERIAL PRIMARY KEY,
                               device_id INT,
                               config_key VARCHAR(255) NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE DeviceConfig (
 );
 
 -- Индекс для ускорения поиска по device_id в таблице DeviceConfig
-CREATE INDEX idx_device_config_device_id ON DeviceConfig(device_id);
+CREATE INDEX IF NOT EXISTS idx_device_config_device_id ON DeviceConfig(device_id);
 
 INSERT INTO DeviceType (type_name, description) VALUES
                                                     ('Smart Plug', 'Умная розетка для дистанционного управления электроприборами'),
